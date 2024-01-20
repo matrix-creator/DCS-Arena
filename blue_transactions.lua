@@ -32,7 +32,7 @@ local C_def = missionCommands.addSubMenuForCoalition(BLUE, 'C', defenseCmds)
 local function legalizeNuclearBombs()
     if blue_bonds >= mig_nuke then
         trigger.action.outText('Nuke inbound for Red Spawn', 15)
-        blue_bonds = (blue_bonds - mig_nuke)
+        setBlueBonds(blue_bonds - mig_nuke)
         mist.respawnGroup('Blue Nuke', true)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for Nuke', 15)
@@ -40,7 +40,7 @@ local function legalizeNuclearBombs()
 end
 local function respawn()
     if blue_bonds >= respawn_convoy then
-        blue_bonds = (blue_bonds - respawn_convoy)
+        setBlueBonds(blue_bonds - respawn_convoy)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for Convoy', 15)
     end
@@ -48,7 +48,7 @@ end
     --A--
 local function agm_salvo_a()
     if blue_bonds >= b52 then
-        blue_bonds = (blue_bonds - b52)
+        setBlueBonds(blue_bonds - b52)
         mist.respawnGroup('Blue B52A', true)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for AGM-86C Salvo', 15)
@@ -56,7 +56,7 @@ local function agm_salvo_a()
 end
 local function sead_a()
     if blue_bonds >= f16 then
-        blue_bonds = (blue_bonds - f16)
+        setBlueBonds(blue_bonds - f16)
         mist.respawnGroup('Blue F16A', true)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for SEAD Strike', 15)
@@ -64,7 +64,7 @@ local function sead_a()
 end
 local function cas_a()
     if blue_bonds >= a10c then
-        blue_bonds = (blue_bonds - a10c)
+        setBlueBonds(blue_bonds - a10c)
         mist.respawnGroup('Blue A10A', true)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for CAS', 15)
@@ -76,7 +76,7 @@ end
     --A--
 local function grumble_spawn_a()
     if blue_bonds >= sa10 then
-        blue_bonds = (blue_bonds - sa10)
+        setBlueBonds(blue_bonds - sa10)
         mist.respawnInZone('Blue Grumble A', 'Blue A Defense', false, 25, nil)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for SA-10', 15)
@@ -84,7 +84,7 @@ local function grumble_spawn_a()
 end
 local function gadfly_spawn_a()
     if blue_bonds >= sa11 then
-        blue_bonds = (blue_bonds - sa11)
+        setBlueBonds(blue_bonds - sa11)
         mist.respawnInZone('Blue Gadfly A', 'Blue A Defense', false, 25, nil)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for SA-11', 15)
@@ -92,7 +92,7 @@ local function gadfly_spawn_a()
 end
 local function goa_spawn_a()
     if blue_bonds >= sa3 then
-        blue_bonds = (blue_bonds - sa3)
+        setBlueBonds(blue_bonds - sa3)
         mist.respawnInZone('Blue Goa A', 'Blue A Defense', false, 25, nil)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for SA-3', 15)
@@ -100,7 +100,7 @@ local function goa_spawn_a()
 end
 local function grison_spawn_a()
     if blue_bonds >= sa19 then
-        blue_bonds = (blue_bonds - sa19)
+        setBlueBonds(blue_bonds - sa19)
         mist.respawnInZone('Blue Grison A', 'Blue A Defense', false, 25, nil)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for SA-19', 15)
@@ -108,7 +108,7 @@ local function grison_spawn_a()
 end
 local function ewr_spawn()
     if blue_bonds >= ewr then
-        blue_bonds = (blue_bonds - ewr)
+        setBlueBonds(blue_bonds - ewr)
         mist.respawnGroup('Blue EWR', true)
     else
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for EWR', 15)
