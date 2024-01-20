@@ -52,34 +52,27 @@ function killer:onEvent(event)
                 if dead_category == AIRPLANE then
                     if isPlayer then
                         red_vp = (red_vp - fixed_wing_vp)
-                        blue_bonds = (blue_bonds
-                                + aircraft_bond)
+                        blue_bonds = (blue_bonds + aircraft_bond)
                     elseif event.target:hasAttribute('AWACS') then
                         red_vp = (red_vp - awacs_vp)
-                        blue_bonds = (blue_bonds
-                                + awacs_bond)
+                        blue_bonds = (blue_bonds + awacs_bond)
                     else
                         red_vp = (red_vp - ai_aircraft_vp)
-                        blue_bonds = (blue_bonds
-                                + aircraft_bond)
+                        blue_bonds = (blue_bonds + aircraft_bond)
                     end
                 elseif dead_category == HELICOPTER then
                     red_vp = (red_vp - rotor_vp)
-                    blue_bonds = (blue_bonds
-                            + aircraft_bond)
+                    blue_bonds = (blue_bonds + aircraft_bond)
                 elseif dead_category == GROUND_UNIT then
                     if event.target:hasAttribute('SAM elements') then
                         red_vp = (red_vp - sam_vp)
-                        blue_bonds = (blue_bonds
-                                + sam_bond)
+                        blue_bonds = (blue_bonds + sam_bond)
                     elseif event.target:hasAttribute('Static AAA') then
                         red_vp = (red_vp - spaag_vp)
-                        blue_bonds = (blue_bonds
-                                + ground_bond)
+                        blue_bonds = (blue_bonds + ground_bond)
                     elseif event.initiator:hasAttribute('Infantry') == false then
                         red_vp = (red_vp - ground_vp)
-                        blue_bonds = (blue_bonds
-                                + ground_bond)
+                        blue_bonds = (blue_bonds + ground_bond)
                     end
                 end
             elseif killer_coalition == BLUE then
@@ -117,34 +110,27 @@ function killer:onEvent(event)
                 if dead_category == AIRPLANE then
                     if isPlayer then
                         red_vp = (red_vp - fixed_wing_vp)
-                        blue_bonds = (blue_bonds
-                                + aircraft_bond)
+                        blue_bonds = (blue_bonds + aircraft_bond)
                     elseif event.target:hasAttribute('AWACS') then
                         red_vp = (red_vp - awacs_vp)
-                        blue_bonds = (blue_bonds
-                                + awacs_bond)
+                        blue_bonds = (blue_bonds + awacs_bond)
                     else
                         red_vp = (red_vp - ai_aircraft_vp)
-                        blue_bonds = (blue_bonds
-                                + aircraft_bond)
+                        blue_bonds = (blue_bonds + aircraft_bond)
                     end
                 elseif dead_category == HELICOPTER then
                     red_vp = (red_vp - rotor_vp)
-                    blue_bonds = (blue_bonds
-                            + aircraft_bond)
+                    blue_bonds = (blue_bonds + aircraft_bond)
                 elseif dead_category == GROUND_UNIT then
                     if event.target:hasAttribute('SAM elements') then
                         red_vp = (red_vp - sam_vp)
-                        blue_bonds = (blue_bonds
-                                + sam_bond)
+                        blue_bonds = (blue_bonds + sam_bond)
                     elseif event.target:hasAttribute('Static AAA') then
                         red_vp = (red_vp - spaag_vp)
-                        blue_bonds = (blue_bonds
-                                + ground_bond)
+                        blue_bonds = (blue_bonds + ground_bond)
                     elseif event.initiator:hasAttribute('Infantry') == false then
                         red_vp = (red_vp - ground_vp)
-                        blue_bonds = (blue_bonds
-                                + ground_bond)
+                        blue_bonds = (blue_bonds + ground_bond)
                     end
                 end
             elseif killer_coalition == RED then
@@ -187,12 +173,10 @@ function dead:onEvent(event)
             if dead_coalition == RED then
                 if dead_category == AIRPLANE then
                     red_vp = (red_vp - fixed_wing_vp)
-                    blue_bonds = (blue_bonds
-                            + aircraft_bond)
+                    blue_bonds = (blue_bonds + aircraft_bond)
                 elseif dead_category == HELICOPTER then
                     red_vp = (red_vp - rotor_vp)
-                    blue_bonds = (blue_bonds
-                            + aircraft_bond)
+                    blue_bonds = (blue_bonds + aircraft_bond)
                 end
             elseif dead_coalition == BLUE then
                 if dead_category == AIRPLANE then
@@ -212,12 +196,10 @@ function dead:onEvent(event)
             if dead_coalition == RED then
                 if dead_category == AIRPLANE then
                     red_vp = (red_vp - fixed_wing_vp)
-                    blue_bonds = (blue_bonds
-                            + aircraft_bond)
+                    blue_bonds = (blue_bonds + aircraft_bond)
                 elseif dead_category == HELICOPTER then
                     red_vp = (red_vp - rotor_vp)
-                    blue_bonds = (blue_bonds
-                            + aircraft_bond)
+                    blue_bonds = (blue_bonds + aircraft_bond)
                 end
             elseif dead_coalition == BLUE then
                 if dead_category == AIRPLANE then
@@ -236,12 +218,10 @@ function dead:onEvent(event)
         if dead_coalition == RED then
             if dead_category == AIRPLANE then
                 red_vp = (red_vp - fixed_wing_vp)
-                blue_bonds = (blue_bonds
-                        + aircraft_bond)
+                blue_bonds = (blue_bonds + aircraft_bond)
             elseif dead_category == HELICOPTER then
                 red_vp = (red_vp - rotor_vp)
-                blue_bonds = (blue_bonds
-                        + aircraft_bond)
+                blue_bonds = (blue_bonds + aircraft_bond)
             end
         elseif dead_coalition == BLUE then
             if dead_category == AIRPLANE then
