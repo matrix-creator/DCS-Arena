@@ -1,8 +1,9 @@
 --- transactions script
 --[[
-Author: Kameron H
-Date: 12/29/2023
-Version 1.0
+Author: *HIDDEN*
+Date: 1/20/2024
+Version 1.1
+    1.1 -> changed functions and values to match that in "values.lua"
 ]]--
 
 local RED = 1
@@ -38,14 +39,15 @@ local function legalizeNuclearBombs()
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for Nuke', 15)
     end
 end
+    --A--
 local function respawn()
     if red_bonds >= respawn_convoy then
         setRedBonds(red_bonds - respawn_convoy)
+        mist.respawnGroup('Red Ground A', true)
     else
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for Convoy', 15)
     end
 end
---A--
 local function agm_salvo_a()
     if red_bonds >= b52 then
         setRedBonds(red_bonds - b52)
@@ -70,10 +72,10 @@ local function cas_a()
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for CAS', 15)
     end
 end
---B--
---C--
+    --B--
+    --C--
 --- FUNCTIONS FOR DEFENDING
---A--
+    --A--
 local function grumble_spawn_a()
     if red_bonds >= sa10 then
         setRedBonds(red_bonds - sa10)
@@ -114,12 +116,12 @@ local function ewr_spawn()
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for EWR', 15)
     end
 end
---B--
---C--
+    --B--
+    --C--
 --- ATTACK COMMANDS
 missionCommands.addCommandForCoalition(RED, 'MiG-21 Nuclear Bomb', attackCmds, legalizeNuclearBombs)
-missionCommands.addCommandForCoalition(RED, 'Respawn Destroyed Convoy', attackCmds, respawn)
 
+missionCommands.addCommandForCoalition(RED, 'Respawn Destroyed Convoy A', A_atk, respawn)
 missionCommands.addCommandForCoalition(RED, 'B-52 AGM-86C Salvo', A_atk, agm_salvo_a)
 missionCommands.addCommandForCoalition(RED, 'F-16C Fighting Falcon SEAD Strike', A_atk, sead_a)
 missionCommands.addCommandForCoalition(RED, 'A-10C Thunderbolt II CAS Strike', A_atk, cas_a)

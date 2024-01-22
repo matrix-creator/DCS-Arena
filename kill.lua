@@ -1,6 +1,6 @@
 --- Calculates point values based on kill
 --[[
-Author: Kameron H
+Author: *HIDDEN*
 Date: 12/29/2023
 Version 1.1.2
     1.1 -> removed friendly fire to do 'nil' returning sometimes
@@ -166,11 +166,10 @@ function killer:onEvent(event)
     end
 end
 function dead:onEvent(event)
-    if event.id == 5 then
+    if event.id == 5 then -- WHEN SOMEONE CRASHES FROM A UNIT AFTER LOADING
         if event.initiator:getPlayerName() ~= nil then
             local dead_category = event.initiator:getDesc().category
             local dead_coalition = event.initiator:getCoalition()
-            --- WHEN SOMEONE CRASHES FROM A UNIT AFTER LOADING
             if dead_coalition == RED then
                 if dead_category == AIRPLANE then
                     setRedVP(red_vp - fixed_wing_vp)
@@ -189,48 +188,24 @@ function dead:onEvent(event)
                 end
             end
         end
-    elseif event.id == 6 then
-        if event.initiator:getPlayerName() ~= nil then
-            local dead_category = event.initiator:getDesc().category
-            local dead_coalition = event.initiator:getCoalition()
-            --- WHEN SOMEONE EJECTS FROM A UNIT AFTER LOADING
-            if dead_coalition == RED then
-                if dead_category == AIRPLANE then
-                    setRedVP(red_vp - fixed_wing_vp)
-                    setBlueBonds(blue_bonds + aircraft_bond)
-                elseif dead_category == HELICOPTER then
-                    setRedVP(red_vp - rotor_vp)
-                    setBlueBonds(blue_bonds + aircraft_bond)
-                end
-            elseif dead_coalition == BLUE then
-                if dead_category == AIRPLANE then
-                    setBlueVP(blue_vp - fixed_wing_vp)
-                    setRedBonds(red_bonds + aircraft_bond)
-                elseif dead_category == HELICOPTER then
-                    setBlueVP(blue_vp - rotor_vp)
-                    setRedBonds(red_bonds + aircraft_bond)
-                end
-            end
-        end
-    elseif event.id == 21 then
+    elseif event.id == 21 then -- WHEN SOMEONE LEAVES A UNIT AFTER LOADING (includes EJECTING)
         local dead_category = event.initiator:getDesc().category
         local dead_coalition = event.initiator:getCoalition()
-        --- WHEN SOMEONE LEAVES A UNIT AFTER LOADING
         if dead_coalition == RED then
             if dead_category == AIRPLANE then
-                setRedVP(red_vp - fixed_wing_vp)
-                setBlueBonds(blue_bonds + aircraft_bond)
+                setRedVP(red_vp - fixed_wing_vp/2)
+                setBlueBonds(blue_bonds + aircraft_bond/2)
             elseif dead_category == HELICOPTER then
-                setRedVP(red_vp - rotor_vp)
-                setBlueBonds(blue_bonds + aircraft_bond)
+                setRedVP(red_vp - rotor_vp/2)
+                setBlueBonds(blue_bonds + aircraft_bond/2)
             end
         elseif dead_coalition == BLUE then
             if dead_category == AIRPLANE then
-                setBlueVP(blue_vp - fixed_wing_vp)
-                setRedBonds(red_bonds + aircraft_bond)
+                setBlueVP(blue_vp - fixed_wing_vp/2)
+                setRedBonds(red_bonds + aircraft_bond/2)
             elseif dead_category == HELICOPTER then
-                setBlueVP(blue_vp - rotor_vp)
-                setRedBonds(red_bonds + aircraft_bond)
+                setBlueVP(blue_vp - rotor_vp/2)
+                setRedBonds(red_bonds + aircraft_bond/2)
             end
         end
     end
