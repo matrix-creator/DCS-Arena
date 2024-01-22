@@ -2,11 +2,12 @@
 --[[
 Author: *HIDDEN*
 Date: 12/29/2023
-Version 1.1.2
+Version 1.3
     1.1 -> removed friendly fire to do 'nil' returning sometimes
         1.1.1 -> fixed friendly fire issue
         1.1.2 -> fixed awacs values and team kills
     1.2 -> coded ground units and player crashes, ejections, and leaving units
+	1.3 -> added code for weapon on weapon kills
 ]]--
 --- getDesc().category
 local AIRPLANE = 0
@@ -40,14 +41,15 @@ local killer = {}
 local dead = {}
 function killer:onEvent(event)
     local isPlayer = false
-    if event.id == 28 then
+	local isWeapon = event.target:getDesc().category == 2
+    if event.id == 28 and isWeapon == false then
         local killer_coalition = event.initiator:getCoalition()
         local dead_category = event.target:getDesc().category
         local dead_coalition = event.target:getCoalition()
         if event.target:getPlayerName() ~= nil then
             isPlayer = true
         end
-        --- WHEN FRIENDLY FIRE OCCURS
+        -- WHEN FRIENDLY FIRE OCCURS
         if killer_coalition == dead_coalition then
             if killer_coalition == RED then
                 if dead_category == AIRPLANE then
@@ -105,7 +107,7 @@ function killer:onEvent(event)
                 end
             end
         end
-        --- WHEN A REGULAR KILLS OCCURS
+        -- WHEN A REGULAR KILLS OCCURS
         if killer_coalition ~= dead_coalition then
             if killer_coalition == BLUE then
                 if dead_category == AIRPLANE then
