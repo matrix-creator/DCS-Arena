@@ -1,14 +1,17 @@
 --- initial values
 --[[
-Author: Kameron H
-Date: 12/29/2023
-Version 1.0
+Author: *HIDDEN*
+Date: 1/21/2024
+Version 1.1.1
+    1.1 -> made variables global
+        1.1.1 -> added global setter functions to change the values
 ]]--
 values = {}
 red_vp = 1000
 blue_vp = 1000
 red_bonds = 0
 blue_bonds = 0
+capTime = 0
 
 function setRedVP(newValue)
     red_vp = newValue
@@ -21,4 +24,7 @@ function setRedBonds(newValue)
 end
 function setBlueBonds(newValue)
     blue_bonds = newValue
+end
+function setCapTime(newValue)
+    capTime = newValue
 end

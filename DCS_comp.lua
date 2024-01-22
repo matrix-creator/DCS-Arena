@@ -1,41 +1,74 @@
 --- Initialization of DCS WoWs CBs
 --[[
-Author: Kameron H
+Author: *HIDDEN*
 Date: 12/29/2023
-Version 1.0
-
-Time Int Values:
-    300 = 5 mins
-    3900 = 1 hour and 5 mins
+Version 1.1b
+    1.1b --> added cap timers for VP and bonds
 ]]--
 
-local absTime = timer.getAbsTime()
-local envTime = timer.getTime0()
+local time = timer.getAbsTime() - timer.getTime0()
 local RED = 1
 local BLUE = 2
-local game_running = true
---[[if absTime + 300 > envTime then
-    red_vp = 1000
-    blue_vp = 1000
-end]]--
-trigger.action.outTextForCoalition(RED, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. red_bonds, 5, true)
-trigger.action.outTextForCoalition(BLUE, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. blue_bonds, 5, true)
-if absTime - envTime > 3900 then
-        --DCS.setPause(true)
+
+
+-- Game Ending Conditions w/ print statements
+if time > 3900 then
+    --DCS.setPause(true)
     if red_vp > blue_vp then
-           trigger.action.setUserFlag('BLUE', 0)
+        trigger.action.setUserFlag('BLUE', 0)
         trigger.action.outText('Red has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
     elseif blue_vp > red_vp then
         trigger.action.setUserFlag('RED', 0)
         trigger.action.outText('Blue has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
     end
-end
-if absTime - envTime > 300 then
+elseif time > 300 then
     if red_vp <= 0 then
         trigger.action.setUserFlag('RED', 0)
         trigger.action.outText('Blue has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
     elseif blue_vp <= 0 then
         trigger.action.setUserFlag('BLUE', 0)
         trigger.action.outText('Red has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
+    else
+        trigger.action.outTextForCoalition(RED, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. red_bonds, 5, true)
+        trigger.action.outTextForCoalition(BLUE, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. blue_bonds, 5, true)
+    end
+elseif time > 30 then
+--[[
+    red_vp = 1000
+    blue_vp = 1000
+]]-- Gonna add after beta test is over.
+    trigger.action.outTextForCoalition(RED, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. red_bonds, 5, true)
+    trigger.action.outTextForCoalition(BLUE, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. blue_bonds .. ' Time:' .. time .. ' capTime:' .. capTime, 5, true)
+else
+    trigger.action.outText('Please Note!!! Once you pick a team, you cannot change. Thanks!', 1, true)
+end
+
+-- Cap Condtions (Adds points if ground units are greater than enemy units in the cap)
+local u = mist.getUnitsInZones(mist.makeUnitTable({'[all]'}), {'A_zone'}, 'cylinder')
+local blue = {}
+local red = {}
+for i = 1, #u do
+    local coalition = Unit.getCoalition(u[i])
+    if coalition == BLUE then
+        table.insert(blue, u[i])
+    elseif coalition == RED then
+        table.insert(red, u[i])
+    end
+end
+if mist.groupIsDead('Blue Ground A') == false then
+    if capTime == 0 and blue[1] ~= nil and red[1] == nil then
+        setCapTime(time)
+    elseif (time - capTime) >= 60 and capTime ~= 0 then
+        setRedVP(red_vp - 10)
+        setBlueBonds(blue_bonds + 10)
+        setCapTime(0)
+    end
+elseif mist.groupIsDead('Red Ground A') == false then
+    if capTime == 0 and blue[1] == nil and red[1] ~= nil then
+        setCapTime(time)
+    elseif (time - capTime) >= 60  and capTime ~= 0 then
+        setBlueVP(blue_vp - 10)
+        setRedBonds(red_bonds + 10)
+        setCapTime(0)
     end
 end
