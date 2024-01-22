@@ -37,4 +37,4 @@ function printStats()
     trigger.action.outTextForCoalition(BLUE, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. blue_bonds, 5)
 end
 
-mist.scheduleFunction(printStats, {}, timer.getTime() + 30, 7, timer.getTime() + 3900)
+mist.scheduleFunction(printStats, {}, timer.getTime() + 30, 5, timer.getTime() + 3900)
