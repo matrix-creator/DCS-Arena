@@ -34,7 +34,7 @@ local C_def = missionCommands.addSubMenuForCoalition(BLUE, 'C', defenseCmds)
 local function legalizeNuclearBombs()
     if blue_bonds >= mig_nuke then
         trigger.action.outText('Nuke inbound for Red Spawn', 15)
-        trigger.action.outSound("l10n/DEFAULT/nuke_inbound.wav")
+        trigger.action.outSoundForCoalition(RED, "l10n/DEFAULT/nuke_inbound.wav")
         setBlueBonds(blue_bonds - mig_nuke)
         mist.respawnGroup('Blue Nuke', true)
     else
@@ -47,7 +47,7 @@ local function respawn()
         setBlueBonds(blue+bonds - respawn_convoy)
         mist.respawnGroup('Blue Ground A', true)
     else
-        trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for Convoy', 15)
+        trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for Convoy', 15)
     end
 end
 local function agm_salvo_a()
