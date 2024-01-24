@@ -35,9 +35,6 @@ elseif time > 300 then
         mist.respawnGroup('Red Ground A', true)
         ground_spawned = true
     end
-elseif time > 30 then
-    red_vp = 1000
-    blue_vp = 1000
 elseif mist.groupIsDead('Red_Lifeline') == true then
     trigger.action.setUserFlag('RED', 0)
     trigger.action.outText('Blue has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)

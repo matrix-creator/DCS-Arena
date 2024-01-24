@@ -52,4 +52,4 @@ function checkForNuke()
 end
 
 mist.scheduleFunction(checkForNuke, {}, timer.getTime() + 300, 10, timer.getTime() + 3900)
-mist.scheduleFunction(printStats, {}, timer.getTime() + 30, 6, timer.getTime() + 3900)
+mist.scheduleFunction(printStats, {}, timer.getTime() + 30, 7, timer.getTime() + 3900)
