@@ -38,6 +38,12 @@ elseif time > 300 then
 elseif time > 30 then
     red_vp = 1000
     blue_vp = 1000
+elseif mist.groupIsDead('Red_Lifeline') == true then
+    trigger.action.setUserFlag('RED', 0)
+    trigger.action.outText('Blue has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
+elseif mist.groupIsDead('Blue_Lifeline') == true then
+    trigger.action.setUserFlag('BLUE', 0)
+    trigger.action.outText('Red has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
 else
     trigger.action.outText('Please Note!!! Once you pick a team, you cannot change. Thanks!', 1, true)
 end

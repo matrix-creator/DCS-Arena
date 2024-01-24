@@ -7,6 +7,7 @@ Version 1.1
 ]]--
 
 local RED = 1
+local BLUE = 2
 
 --- STORE VALUES
 local mig_nuke = 800
@@ -32,7 +33,8 @@ local C_def = missionCommands.addSubMenuForCoalition(RED, 'C', defenseCmds)
 --- FUNCTIONS FOR ATTACKING
 local function legalizeNuclearBombs()
     if red_bonds >= mig_nuke then
-        trigger.action.outText('Nuke inbound for Red Spawn', 15)
+        trigger.action.outText('Nuke inbound for Blue Spawn', 15)
+        trigger.action.outSoundForCoalition(BLUE, "l10n/DEFAULT/nuke_inbound.wav")
         setRedBonds(red_bonds - mig_nuke)
         mist.respawnGroup('Red Nuke', true)
     else

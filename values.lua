@@ -37,4 +37,19 @@ function printStats()
     trigger.action.outTextForCoalition(BLUE, 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp .. '  Bonds: ' .. blue_bonds, 5)
 end
 
-mist.scheduleFunction(printStats, {}, timer.getTime() + 30, 5, timer.getTime() + 3900)
+-- Checking for Tactical Nukes Inside an Enemy Base
+function checkForNuke()
+    local redBase = mist.getUnitsInZones(mist.makeUnitTable({'[g]Blue Nuke'}), {'RedBase'}, 'cylinder')
+    local blueBase = mist.getUnitsInZones(mist.makeUnitTable({'[g]Red Nuke'}), {'BlueBase'}, 'cylinder')
+    if redBase ~= nil then
+        trigger.action.outText('Blue Tactical Nuke has arrived inside Red base.')
+        trigger.action.outSoundForCoalition(RED, "l10n/DEFAULT/nuke_arrived.wav")
+    end
+    if blueBase ~= nil then
+        trigger.action.outText('Red Tactical Nuke has arrived inside Blue base.')
+        trigger.action.outSoundForCoalition(BLUE, "l10n/DEFAULT/nuke_arrived.wav")
+    end
+end
+
+mist.scheduleFunction(checkForNuke, {}, timer.getTime() + 300, 10, timer.getTime() + 3900)
+mist.scheduleFunction(printStats, {}, timer.getTime() + 30, 6, timer.getTime() + 3900)
