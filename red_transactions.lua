@@ -23,12 +23,6 @@ local sa19 = 100
 
 local attackCmds = missionCommands.addSubMenuForCoalition(RED, 'Attack')
 local defenseCmds = missionCommands.addSubMenuForCoalition(RED, 'Defense')
-local A_atk = missionCommands.addSubMenuForCoalition(RED, 'A', attackCmds)
-local B_atk = missionCommands.addSubMenuForCoalition(RED, 'B', attackCmds)
-local C_atk = missionCommands.addSubMenuForCoalition(RED, 'C', attackCmds)
-local A_def = missionCommands.addSubMenuForCoalition(RED, 'A', defenseCmds)
-local B_def = missionCommands.addSubMenuForCoalition(RED, 'B', defenseCmds)
-local C_def = missionCommands.addSubMenuForCoalition(RED, 'C', defenseCmds)
 
 --- FUNCTIONS FOR ATTACKING
 local function legalizeNuclearBombs()
@@ -41,7 +35,6 @@ local function legalizeNuclearBombs()
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for Nuke', 15)
     end
 end
-    --A--
 local function respawn()
     if red_bonds >= respawn_convoy then
         setRedBonds(red_bonds - respawn_convoy)
@@ -74,10 +67,7 @@ local function cas_a()
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for CAS', 15)
     end
 end
-    --B--
-    --C--
 --- FUNCTIONS FOR DEFENDING
-    --A--
 local function grumble_spawn_a()
     if red_bonds >= sa10 then
         setRedBonds(red_bonds - sa10)
@@ -118,38 +108,17 @@ local function ewr_spawn()
         trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for EWR', 15)
     end
 end
-    --B--
-    --C--
+
 --- ATTACK COMMANDS
+missionCommands.addCommandForCoalition(RED, 'Respawn Destroyed Convoy A', attackCmds, respawn)
+missionCommands.addCommandForCoalition(RED, 'B-52 AGM-86C Salvo', attackCmds, agm_salvo_a)
+missionCommands.addCommandForCoalition(RED, 'F-16C Fighting Falcon SEAD Strike', attackCmds, sead_a)
+missionCommands.addCommandForCoalition(RED, 'A-10C Thunderbolt II CAS Strike', attackCmds, cas_a)
 missionCommands.addCommandForCoalition(RED, 'MiG-21 Nuclear Bomb', attackCmds, legalizeNuclearBombs)
 
-missionCommands.addCommandForCoalition(RED, 'Respawn Destroyed Convoy A', A_atk, respawn)
-missionCommands.addCommandForCoalition(RED, 'B-52 AGM-86C Salvo', A_atk, agm_salvo_a)
-missionCommands.addCommandForCoalition(RED, 'F-16C Fighting Falcon SEAD Strike', A_atk, sead_a)
-missionCommands.addCommandForCoalition(RED, 'A-10C Thunderbolt II CAS Strike', A_atk, cas_a)
-
---missionCommands.addCommandForCoalition(RED, 'B-52 AGM-86C Salvo', B_atk, agm_salvo_b)
---missionCommands.addCommandForCoalition(RED, 'F-16C Fighting Falcon SEAD Strike', B_atk, sead_b)
---missionCommands.addCommandForCoalition(RED, 'A-10C Thunderbolt II CAS Strike', B_atk, cas_b)
-
---missionCommands.addCommandForCoalition(RED, 'B-52 AGM-86C Salvo', C_atk, agm_salvo_c)
---missionCommands.addCommandForCoalition(RED, 'F-16C Fighting Falcon SEAD Strike', C_atk, sead_c)
---missionCommands.addCommandForCoalition(RED, 'A-10C Thunderbolt II CAS Strike', C_atk, cas_c)
-
 --- DEFENSE COMMANDS
-missionCommands.addCommandForCoalition(RED, 'SA-10 "Grumble" S-300 Complex Spawn', A_def, grumble_spawn_a)
-missionCommands.addCommandForCoalition(RED, 'SA-11 "Gadfly" Buk Complex Spawn', A_def, gadfly_spawn_a)
-missionCommands.addCommandForCoalition(RED, 'SA-3 "Goa" S-125 Neva Spawn', A_def, goa_spawn_a)
-missionCommands.addCommandForCoalition(RED, 'SA-19 "Grison" 2K22 Tunguska Spawn', A_def, grison_spawn_a)
---[[
-missionCommands.addCommandForCoalition(RED, 'SA-10 "Grumble" S-300 Complex Spawn', B_def, grumble_spawn_b)
-missionCommands.addCommandForCoalition(RED, 'SA-11 "Gadfly" Buk Complex Spawn', B_def, gadfly_spawn_b)
-missionCommands.addCommandForCoalition(RED, 'SA-3 "Goa" S-125 Neva Spawn', B_def, goa_spawn_b)
-missionCommands.addCommandForCoalition(RED, 'SA-19 "Grison" 2K22 Tunguska Spawn', B_def, grison_spawn_b)
-
-missionCommands.addCommandForCoalition(RED, 'SA-10 "Grumble" S-300 Complex Spawn', C_def, grumble_spawn_c)
-missionCommands.addCommandForCoalition(RED, 'SA-11 "Gadfly" Buk Complex Spawn', C_def, gadfly_spawn_c)
-missionCommands.addCommandForCoalition(RED, 'SA-3 "Goa" S-125 Neva Spawn', C_def, goa_spawn_c)
-missionCommands.addCommandForCoalition(RED, 'SA-19 "Grison" 2K22 Tunguska Spawn', C_def, grison_spawn_c)
-]]--
+missionCommands.addCommandForCoalition(RED, 'SA-10 "Grumble" S-300 Complex Spawn', defenseCmds, grumble_spawn_a)
+missionCommands.addCommandForCoalition(RED, 'SA-11 "Gadfly" Buk Complex Spawn', defenseCmds, gadfly_spawn_a)
+missionCommands.addCommandForCoalition(RED, 'SA-3 "Goa" S-125 Neva Spawn', defenseCmds, goa_spawn_a)
+missionCommands.addCommandForCoalition(RED, 'SA-19 "Grison" 2K22 Tunguska Spawn', defenseCmds, grison_spawn_a)
 missionCommands.addCommandForCoalition(RED, 'EWR Complex Spawn', defenseCmds, ewr_spawn)
