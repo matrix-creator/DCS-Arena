@@ -6,6 +6,7 @@ Version 1.1
     1.1 -> changed functions and values to match that in "values.lua"
 ]]--
 
+local RED = 1
 local BLUE = 2
 
 --- STORE VALUES
@@ -33,6 +34,7 @@ local C_def = missionCommands.addSubMenuForCoalition(BLUE, 'C', defenseCmds)
 local function legalizeNuclearBombs()
     if blue_bonds >= mig_nuke then
         trigger.action.outText('Nuke inbound for Red Spawn', 15)
+        trigger.action.outSoundForCoalition(RED, "l10n/DEFAULT/nuke_inbound.wav")
         setBlueBonds(blue_bonds - mig_nuke)
         mist.respawnGroup('Blue Nuke', true)
     else
@@ -41,11 +43,11 @@ local function legalizeNuclearBombs()
 end
     --A--
 local function respawn()
-    if red_bonds >= respawn_convoy then
-        setRedBonds(red_bonds - respawn_convoy)
+    if blue_bonds >= respawn_convoy then
+        setBlueBonds(blue+bonds - respawn_convoy)
         mist.respawnGroup('Blue Ground A', true)
     else
-        trigger.action.outTextForCoalition(RED, 'Not Enough Bonds for Convoy', 15)
+        trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for Convoy', 15)
     end
 end
 local function agm_salvo_a()
