@@ -9,7 +9,6 @@ Version 1.1b
 local time = timer.getAbsTime() - timer.getTime0()
 local RED = 1
 local BLUE = 2
-local ground_spawned = false
 
 
 -- Game Ending Conditions w/ print statements
@@ -30,18 +29,14 @@ elseif time > 300 then
         trigger.action.setUserFlag('BLUE', 0)
         trigger.action.outText('Red has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
     end
-    if ground_spawned == false then
-        mist.respawnGroup('Blue Ground A', true)
-        mist.respawnGroup('Red Ground A', true)
-        ground_spawned = true
-    end
 elseif mist.groupIsDead('Red_Lifeline') == true then
     trigger.action.setUserFlag('RED', 0)
     trigger.action.outText('Blue has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
 elseif mist.groupIsDead('Blue_Lifeline') == true then
     trigger.action.setUserFlag('BLUE', 0)
     trigger.action.outText('Red has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
-else
+end
+if time < 30 then
     trigger.action.outText('Please Note!!! Once you pick a team, you cannot change. Thanks!', 1, true)
 end
 

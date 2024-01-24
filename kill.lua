@@ -44,7 +44,7 @@ function killer:onEvent(event)
     if event.id == 28 then
     	local isWeapon = event.target:getCategory() == 2
         if isWeapon == false then
-            local killer_coalition = event.initiator:getCoalition()
+            local killer_coalition = event.weapon:getCoalition()
             local dead_category = event.target:getDesc().category
             local dead_coalition = event.target:getCoalition()
             if event.target:getPlayerName() ~= nil then
