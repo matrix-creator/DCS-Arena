@@ -108,16 +108,17 @@ local function ewr_spawn()
         trigger.action.outTextForCoalition(BLUE, 'Not Enough Bonds for EWR', 15)
     end
 end
+
 --- ATTACK COMMANDS
-missionCommands.addCommandForCoalition(BLUE, 'Respawn Destroyed Convoy A', attackCmds, respawn)
-missionCommands.addCommandForCoalition(BLUE, 'B-52 AGM-86C Salvo', attackCmds, agm_salvo_a)
-missionCommands.addCommandForCoalition(BLUE, 'F-16C Fighting Falcon SEAD Strike', attackCmds, sead_a)
-missionCommands.addCommandForCoalition(BLUE, 'A-10C Thunderbolt II CAS Strike', attackCmds, cas_a)
-missionCommands.addCommandForCoalition(BLUE, 'MiG-21 Nuclear Bomb', attackCmds, legalizeNuclearBombs)
+missionCommands.addCommandForCoalition(BLUE, 'Respawn Destroyed Convoy (100A)', attackCmds, respawn)
+missionCommands.addCommandForCoalition(BLUE, 'B-52 AGM-86C Salvo (450)', attackCmds, agm_salvo_a)
+missionCommands.addCommandForCoalition(BLUE, 'F-16C SEAD Strike (400)', attackCmds, sead_a)
+missionCommands.addCommandForCoalition(BLUE, 'A-10C CAS Strike (200)', attackCmds, cas_a)
+missionCommands.addCommandForCoalition(BLUE, 'MiG-21 Nuclear Bomb (800)', attackCmds, legalizeNuclearBombs)
 
 --- DEFENSE COMMANDS
-missionCommands.addCommandForCoalition(BLUE, 'SA-10 "Grumble" S-300 Complex Spawn', defenseCmds, grumble_spawn_a)
-missionCommands.addCommandForCoalition(BLUE, 'SA-11 "Gadfly" Buk Complex Spawn', defenseCmds, gadfly_spawn_a)
-missionCommands.addCommandForCoalition(BLUE, 'SA-3 "Goa" S-125 Neva Spawn', defenseCmds, goa_spawn_a)
-missionCommands.addCommandForCoalition(BLUE, 'SA-19 "Grison" 2K22 Tunguska Spawn', defenseCmds, grison_spawn_a)
-missionCommands.addCommandForCoalition(BLUE, 'EWR Complex Spawn', defenseCmds, ewr_spawn)
+missionCommands.addCommandForCoalition(BLUE, 'SA-10 "Grumble" (450)', defenseCmds, grumble_spawn_a)
+missionCommands.addCommandForCoalition(BLUE, 'SA-11 "Gadfly" (300)', defenseCmds, gadfly_spawn_a)
+missionCommands.addCommandForCoalition(BLUE, 'SA-3 "Goa" (200)', defenseCmds, goa_spawn_a)
+missionCommands.addCommandForCoalition(BLUE, 'SA-19 "Grison" (100)', defenseCmds, grison_spawn_a)
+missionCommands.addCommandForCoalition(BLUE, 'EWR Complex Spawn (200)', defenseCmds, ewr_spawn)
