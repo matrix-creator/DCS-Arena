@@ -2,8 +2,9 @@
 --[[
 Author: *HIDDEN*
 Date: 1/20/2024
-Version 1.1
+Version 1.2
     1.1 -> changed functions and values to match that in "values.lua"
+    1.2 -> removed B+C stores and changed the bond store commands
 ]]--
 
 local RED = 1
@@ -110,7 +111,7 @@ local function ewr_spawn()
 end
 
 --- ATTACK COMMANDS
-missionCommands.addCommandForCoalition(RED, 'Respawn Destroyed Convoy (100A)', attackCmds, respawn)
+missionCommands.addCommandForCoalition(RED, 'Respawn Destroyed Convoy (100)', attackCmds, respawn)
 missionCommands.addCommandForCoalition(RED, 'B-52 AGM-86C Salvo (450)', attackCmds, agm_salvo_a)
 missionCommands.addCommandForCoalition(RED, 'F-16C SEAD Strike (400)', attackCmds, sead_a)
 missionCommands.addCommandForCoalition(RED, 'A-10C CAS Strike (200)', attackCmds, cas_a)

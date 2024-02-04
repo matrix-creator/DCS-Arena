@@ -2,8 +2,10 @@
 --[[
 Author: *HIDDEN*
 Date: 12/29/2023
-Version 1.1b
-    1.1b --> added cap timers for VP and bonds
+Version 1.2.1
+    1.1 -> added cap timers for VP and bonds
+    1.2 -> changed the cap calculations to be if one is greater than other
+        1.2.1 -> added destroyNil to remove nil values from ground unit tables in zone
 ]]--
 
 local time = timer.getAbsTime() - timer.getTime0()
@@ -13,7 +15,6 @@ local BLUE = 2
 
 -- Game Ending Conditions w/ print statements
 if time > 3900 then
-    --DCS.setPause(true)
     if red_vp > blue_vp then
         trigger.action.setUserFlag('BLUE', 0)
         trigger.action.outText('Red has won! ' .. 'Red: ' .. red_vp .. ' Blue: ' .. blue_vp, 30, true)
@@ -52,8 +53,19 @@ for i = 1, #u do
         table.insert(red, u[i])
     end
 end
+function destroyNil(table)
+    local tbl = {}
+    for i = 1, #table do
+        if (table[i] ~= nil) then
+            table.insert(tbl, table[i])
+        end
+    end
+    table = tbl
+end
+destroyNil(blue)
+destroyNil(red)
 if mist.groupIsDead('Blue Ground A') == false then
-    if capTime == 0 and blue[1] ~= nil and red[1] == nil then
+    if capTime == 0 and (#blue > #red) then
         setCapTime(time)
     elseif (time - capTime) >= 60 and capTime ~= 0 then
         setRedVP(red_vp - 10)
@@ -61,7 +73,7 @@ if mist.groupIsDead('Blue Ground A') == false then
         setCapTime(0)
     end
 elseif mist.groupIsDead('Red Ground A') == false then
-    if capTime == 0 and blue[1] == nil and red[1] ~= nil then
+    if capTime == 0 and (#blue < #red) then
         setCapTime(time)
     elseif (time - capTime) >= 60  and capTime ~= 0 then
         setBlueVP(blue_vp - 10)

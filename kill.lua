@@ -2,12 +2,13 @@
 --[[
 Author: *HIDDEN*
 Date: 12/29/2023
-Version 1.3
+Version 1.3.1
     1.1 -> removed friendly fire to do 'nil' returning sometimes
         1.1.1 -> fixed friendly fire issue
         1.1.2 -> fixed awacs values and team kills
     1.2 -> coded ground units and player crashes, ejections, and leaving units
 	1.3 -> added code for weapon on weapon kills
+        1.3.1 -> changed ground kill calculations
 ]]--
 --- getDesc().category
 local AIRPLANE = 0
@@ -74,7 +75,7 @@ function killer:onEvent(event)
                         elseif event.target:hasAttribute('Static AAA') then
                             setRedVP(red_vp - spaag_vp)
                             setBlueBonds(blue_bonds + ground_bond)
-                        elseif event.initiator:hasAttribute('Infantry') == false then
+                        elseif event.target:hasAttribute('Infantry') then
                             setRedVP(red_vp - ground_vp)
                             setBlueBonds(blue_bonds + ground_bond)
                         end
@@ -101,7 +102,7 @@ function killer:onEvent(event)
                         elseif event.target:hasAttribute('Static AAA') then
                             setBlueVP(blue_vp - spaag_vp)
                             setRedBonds(red_bonds + ground_bond)
-                        elseif event.initiator:hasAttribute('Infantry') == false then
+                        elseif event.target:hasAttribute('Infantry') then
                             setBlueVP(blue_vp - ground_vp)
                             setRedBonds(red_bonds + ground_bond)
                         end
@@ -132,7 +133,7 @@ function killer:onEvent(event)
                         elseif event.target:hasAttribute('Static AAA') then
                             setRedVP(red_vp - spaag_vp)
                             setBlueBonds(blue_bonds + ground_bond)
-                        elseif event.initiator:hasAttribute('Infantry') == false then
+                        elseif event.target:hasAttribute('Infantry') then
                             setRedVP(red_vp - ground_vp)
                             setBlueBonds(blue_bonds + ground_bond)
                         end
@@ -159,7 +160,7 @@ function killer:onEvent(event)
                         elseif event.target:hasAttribute('Static AAA') then
                             setBlueVP(blue_vp - spaag_vp)
                             setRedBonds(red_bonds + ground_bond)
-                        elseif event.initiator:hasAttribute('Infantry') == false then
+                        elseif event.target:hasAttribute('Infantry') then
                             setBlueVP(blue_vp - ground_vp)
                             setRedBonds(red_bonds + ground_bond)
                         end
