@@ -21,11 +21,11 @@ local RED = 1
 local BLUE = 2
 
 --- VP Values
-local awacs_vp = 250
-local fixed_wing_vp = 100
+local awacs_vp = 200
+local fixed_wing_vp = 50
 local rotor_vp = 50
-local ai_aircraft_vp = 50
-local sam_vp = 20
+local ai_aircraft_vp = 25
+local sam_vp = 15
 local spaag_vp = 15
 local ground_vp = 10
 local cap_vp = 10
@@ -35,7 +35,7 @@ local awacs_bond = 200
 local aircraft_bond = 50
 local sam_bond = 15
 local cap_bond = 10
-local ground_bond = 5
+local ground_bond = 10
 
 
 local killer = {}
